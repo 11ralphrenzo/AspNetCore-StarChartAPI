@@ -66,7 +66,7 @@ namespace StarChart.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, CelestialObject updatedCelestialObject)
         {
-            var o = this._context.CelestialObjects.FirstOrDefault(x => x.Id == id);
+            var o = this._context.CelestialObjects.Find(id);
             if (o == null)
                 return NotFound();
             o.Name = updatedCelestialObject.Name;
@@ -79,7 +79,7 @@ namespace StarChart.Controllers
 
 
         [HttpPatch("{id}/{name}")]
-        public IActionResult Update(int id, string name)
+        public IActionResult RenameObject(int id, string name)
         {
             var o = this._context.CelestialObjects.FirstOrDefault(x => x.Id == id);
             if (o == null)
